@@ -1,0 +1,117 @@
+import pandas as pd
+import numpy as np
+
+# Set seed for reproducibility
+np.random.seed(42)
+
+# Create a DataFrame with 50 rows and 3 columns of random numeric data
+data = np.random.rand(50, 3)
+df = pd.DataFrame(data, columns=['Column1', 'Column2', 'Column3'])
+
+# Generate random indices to replace with NaNs (10% of total entries)
+num_entries = df.size
+num_nulls = int(0.1 * num_entries)
+indices_to_replace = np.random.choice(df.size, num_nulls, replace=False)
+
+# Replace values at those indices with NaNs
+df.values.flat[indices_to_replace] = np.nan
+
+#Question no 1 subpart:- a.
+ # Generate random indices to replace with NaNs (10% of total entries)
+num_entries = df.size
+num_nulls = int(0.1 * num_entries)
+indices_to_replace = np.random.choice(df.size, num_nulls, replace=False)
+
+# Replace values at those indices with NaNs
+df.values.flat[indices_to_replace] = np.nan
+
+# Identify and count missing values
+missing_values_count = df.isnull().sum()
+
+print("Missing values count:")
+print(missing_values_count)
+
+# Question no 1. subpart b
+
+# Replace values at those indices with NaNs
+df.values.flat[indices_to_replace] = np.nan
+
+# Identify columns with more than 5 null values
+columns_to_drop = df.columns[df.isnull().sum() > 5]
+
+# Drop columns with more than 5 null values
+df_dropped = df.drop(columns=columns_to_drop)
+
+print("DataFrame after dropping columns with more than 5 null values:")
+print(df_dropped)
+
+#Question 1. Subpart C
+
+# Identify row label with maximum sum of values
+row_label_to_drop = df.sum(axis=1).idxmax()
+
+# Drop row with maximum sum of values
+df_dropped = df.drop(index=row_label_to_drop)
+
+#Question 1. Subpart D
+
+# Sort the DataFrame based on the first column
+df_sorted = df.sort_values(by='Column1')
+
+print("DataFrame sorted based on the first column:")
+print(df_sorted)
+
+#Question 1. subpart E
+
+# Remove duplicates from the first column
+df_unique = df.drop_duplicates(subset='Column1')
+
+print("DataFrame after removing duplicates from the first column:")
+print(df_unique)
+
+#Question 1. subpart f
+
+# Calculate correlation between the first and second columns
+correlation_first_second = df['Column1'].corr(df['Column2'])
+
+# Calculate covariance between the second and third columns
+covariance_second_third = df['Column2'].cov(df['Column3'])
+
+print("Correlation between first and second column:", correlation_first_second)
+print("Covariance between second and third column:", covariance_second_third)
+
+#Question no.1 subpart g
+
+# Discretize the second column into 5 bins
+df['Column2_discretized'] = pd.cut(df['Column2'], bins=5)
+
+print("DataFrame with second column discretized into 5 bins:")
+print(df)
+
+#Question 2 subpart a
+
+D_2=np.random.randint(low=3,high=3000,size=(2,5))
+
+#Question 2 subpart b
+
+# Find indexes where values in the second column are even
+even_indexes = df[df['Column2'] % 2 == 0].index
+
+print("Indexes where values are even in the second column:")
+print(even_indexes)
+
+#Question 2 subpart c
+
+# Find indexes where values in the second column are odd
+odd_indexes = df[df['Column2'] % 2 != 0].index
+
+print("Indexes where values are odd in the second column:")
+print(odd_indexes)
+
+#Question 2 subpart d
+print(pd.__version__)
+
+#Question 2 subpart e
+a=np.array([1,2,3,4,5,4,4])
+b=np.where(a==4)
+print(b)
