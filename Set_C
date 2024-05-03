@@ -1,0 +1,109 @@
+#Questionno 1
+import pandas as pd
+
+# Assuming your Excel files are named workshop1.xlsx and workshop2.xlsx
+file_path1 = "Workshop1_GE.xlsx"
+file_path2 = "Workshop2_SEC.xlsx"
+
+# Importing data from the first Excel file into a dataframe
+df1 = pd.read_excel("C:\\Users\\vikash singh\\Downloads\\Workshop1_GE.xlsx")
+
+# Importing data from the second Excel file into another dataframe
+df2 = pd.read_excel("C:\\Users\\vikash singh\\Downloads\\Workshop2_SEC.xlsx")
+#Question 1 subpart a
+
+
+# Merge the two dataframes on the 'Name' column
+merged_df = pd.merge(df1, df2, on='Name', how='inner')
+
+# Get the names of students who attended both workshops
+common_attendees = merged_df['Name'].tolist()
+
+# Display the names of students who attended both workshops
+print("Students who attended both workshops:")
+print(common_attendees)
+
+
+#1 b
+
+# Merge the two dataframes on the 'Name' column
+merged_df = pd.merge(df1, df2, on='Name', suffixes=('_workshop1', '_workshop2'), how='outer')
+
+# Filter out rows where one of the dates is missing
+attended_single_workshop = merged_df[
+    (merged_df['Date_workshop1'].notna() & merged_df['Date_workshop2'].isna()) |
+    (merged_df['Date_workshop1'].isna() & merged_df['Date_workshop2'].notna())
+]
+
+# Get the names of students who attended a single workshop
+single_workshop_attendees = attended_single_workshop['Name'].tolist()
+
+# Display the names of students who attended a single workshop
+print("Students who attended a single workshop:")
+print(single_workshop_attendees)
+
+#1 c
+
+# Concatenate the two dataframes row-wise
+merged_df = pd.concat([df1, df2], ignore_index=True)
+
+# Get the total number of records in the merged dataframe
+total_records = len(merged_df)
+
+# Display the total number of records
+print("Total number of records in the merged dataframe:", total_records)
+
+
+#1 d
+
+# Concatenate the two dataframes row-wise
+merged_df = pd.concat([df1, df2], ignore_index=True)
+
+# Set 'Name' and 'Date' as multi-row indexes
+merged_df.set_index(['Name', 'Date'], inplace=True)
+
+# Generate descriptive statistics for the hierarchical dataframe
+stats = merged_df.describe()
+
+# Display the descriptive statistics
+print("Descriptive statistics for the hierarchical dataframe:")
+print(stats)
+
+
+#2 a
+
+import numpy as np
+
+# Generate a random 2D integer array (5 rows, 3 columns) for example
+np.random.seed(0)  # Setting seed for reproducibility
+random_array = np.random.randint(0, 10, size=(5, 3))
+
+# Compute mean along the second axis (columns)
+mean_values = np.mean(random_array, axis=1)
+
+# Compute standard deviation along the second axis (columns)
+std_deviation = np.std(random_array, axis=1)
+
+# Compute variance along the second axis (columns)
+variance = np.var(random_array, axis=1)
+
+# Display the results
+print("Random 2D Array:")
+print(random_array)
+print("\nMean along the second axis (columns):", mean_values)
+print("Standard deviation along the second axis (columns):", std_deviation)
+print("Variance along the second axis (columns):", variance)
+
+
+#2 b
+
+import numpy as np
+
+# Given array
+B = [56, 48, 22, 41, 78, 91, 24, 46, 8, 33]
+
+# Get the indices of the sorted elements
+sorted_indices = np.argsort(B)
+
+# Display the indices of the sorted elements
+print("Indices of the sorted elements:", sorted_indices)
