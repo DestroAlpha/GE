@@ -1,0 +1,167 @@
+#Question 1 subpart a
+import matplotlib.pyplot as plt
+
+import numpy as np
+
+# Step 1: Generate a random integer array (e.g., 3x5 array)
+random_array = np.random.randint(0, 10, size=(3, 5))
+
+# Display the generated array
+print("Random Array:")
+print(random_array)
+
+# Step 2: Compute the mean along the second axis
+mean_second_axis = np.mean(random_array, axis=1)
+
+# Display the mean
+print("\nMean along the second axis:")
+print(mean_second_axis)
+
+# Step 3: Compute the standard deviation along the second axis
+std_second_axis = np.std(random_array, axis=1)
+
+# Display the standard deviation
+print("\nStandard Deviation along the second axis:")
+print(std_second_axis)
+
+# Step 4: Compute the variance along the second axis
+variance_second_axis = np.var(random_array, axis=1)
+
+# Display the variance
+print("\nVariance along the second axis:")
+print(variance_second_axis)
+
+
+#Question 1 subpart b
+import numpy as np
+
+# Get user inputs for m and n
+m = int(input("Enter the number of rows (m): "))
+n = int(input("Enter the number of columns (n): "))
+
+# Step 1: Create a 2-D array of size m x n with integer elements
+array_2d = np.random.randint(0, 10, size=(m, n))
+
+# Display the shape, type, and data type of the original array
+print("\nOriginal Array:")
+print("Shape:", array_2d.shape)
+print("Type:", type(array_2d))
+print("Data Type:", array_2d.dtype)
+print("\nArray Contents:")
+print(array_2d)
+
+# Step 2: Reshape the array into an n x m array
+reshaped_array = np.reshape(array_2d, (n, m))
+
+# Display the shape, type, and data type of the reshaped array
+print("\nReshaped Array:")
+print("Shape:", reshaped_array.shape)
+print("Type:", type(reshaped_array))
+print("Data Type:", reshaped_array.dtype)
+print("\nArray Contents:")
+print(reshaped_array)
+
+
+#Question 1 subpart c
+import numpy as np
+
+# Example 1-D array (you can replace it with your own array)
+array_1d = np.array([0, 5, 0, 0, np.nan, 7, 0, np.nan])
+
+# Test for zero, non-zero, and NaN elements
+zero_indices = np.where(array_1d == 0)[0]
+non_zero_indices = np.where(array_1d != 0)[0]
+nan_indices = np.where(np.isnan(array_1d))[0]
+
+# Display the results
+print("Original Array:", array_1d)
+print("Indices of Zero Elements:", zero_indices)
+print("Indices of Non-Zero Elements:", non_zero_indices)
+print("Indices of NaN Elements:", nan_indices)
+
+#Question no 1 subpart d
+
+array1=np.random.randint(low=4,high=89,size=(2,2))
+array2=np.random.randint(low=1,high=69,size=(2,2))
+array3=np.random.randint(low=6,high=10,size=(2,2))
+array4=array3-array2
+array5=2*array1
+# Calculate covariance between array1 and array4
+covariance_array1_array4 = np.cov(array1, array4)[0, 1]
+
+# Calculate covariance between array1 and array5
+covariance_array1_array5 = np.cov(array1, array5)[0, 1]
+
+# Calculate correlation coefficient between array1 and array4
+correlation_array1_array4 = np.corrcoef(array1, array4)[0, 1]
+
+# Calculate correlation coefficient between array1 and array5
+correlation_array1_array5 = np.corrcoef(array1, array5)[0, 1]
+
+# Display the results
+print("Covariance between array1 and array4:", covariance_array1_array4)
+print("Covariance between array1 and array5:", covariance_array1_array5)
+print("Correlation coefficient between array1 and array4:", correlation_array1_array4)
+print("Correlation coefficient between array1 and array5:", correlation_array1_array5)
+
+#Question  1 subpart e
+
+
+# Create two random arrays of size 10
+array1 = np.random.rand(10)
+array2 = np.random.rand(10)
+
+# Compute the sum of the first half of both arrays
+sum_first_half_array1 = np.sum(array1[:5])
+sum_first_half_array2 = np.sum(array2[:5])
+
+# Compute the product of the second half of both arrays
+product_second_half_array1 = np.prod(array1[5:])
+product_second_half_array2 = np.prod(array2[5:])
+
+# Display the results
+print("Array1:", array1)
+print("Array2:", array2)
+print("Sum of the first half of Array1:", sum_first_half_array1)
+print("Sum of the first half of Array2:", sum_first_half_array2)
+print("Product of the second half of Array1:", product_second_half_array1)
+print("Product of the second half of Array2:", product_second_half_array2)
+# Question no. 2 subpart a
+
+print(np.__version__)
+
+# Question no. 2 subpart b
+
+# Example array of strings
+array_strings = np.array(['1', '2', '3', '4', '5'])
+
+# Convert the array of strings to numeric form
+array_numeric = array_strings.astype(np.int)
+
+# Display the result
+print("Original Array of Strings:", array_strings)
+print("Array in Numeric Form:", array_numeric)
+
+
+#Question 2 subpart c
+
+arr=np.arange(12).reshape((3,4))
+arr2=arr.reshape(-1)
+print(arr2)
+
+#Question 2 subpart d
+
+D_2=np.random.randint(low=0,high=100,size=(3,5))
+
+
+#Question 2 subpart e
+
+x=np.array([80,85,90,95,100,105,110,115,120,125])
+y=np.array([240,250,260,270,280,290,300,310,320,330])
+plt.title("Y v/s X")
+plt.plot(x,label="X-axis",color="red",linestyle="-.",linewidth=2)
+plt.plot(y,label="Y-axis",color="blue",linestyle="-.",linewidth=2)
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.legend()
+plt.show()
